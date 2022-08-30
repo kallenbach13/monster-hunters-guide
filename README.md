@@ -1,0 +1,82 @@
+# The Monster Hunter's Guide
+
+Deployed At:
+
+### Created By Isak Kallenbach
+
+#### Technologies Used: Javascript, PostgreSQL, Express, React, Node.js, HTML5, CSS3 
+
+This is a database that collects information on various supernatural creatures with the intention of arming would-be monster hunters with valuable knowledge to defeat them.
+
+I wanted to create a fun app that touched on something that interests me. In this case I went with my love of horror movies and so designed a sort of database with monsters and information on how to defeat them as if they were real things.
+
+
+## Instructions
+
+The following instructions are for local use only. Instructions that are necessary only for deployment will be marked accordingly.
+
+#### Database
+
+Create and connect to a database. I use Postbird for local databases, but anything, including the CLI, work perfectly fine. 
+
+Copy and paste the contents of the **monster-hunters-db.sql** file in the server/db directory to create all the necessary tables.
+
+Use the **monsters.sql** file in the same directory to insert some items into the tables.
+
+#### Server
+
+These instructions are meant to be done solely in the server diretory.
+
+Create an .env file with these environment variables (values can be with or without quotes):
+
+- **DB_USER=** Your database username.
+- **DB_PASSWORD=** Your database password.
+- **DB_PORT=** The port that your database is connected to (This is normally 5432).
+- **DB_DATABASE=** Your database's name.
+- **DB_HOST=** The host address. **Deployment Only** - I'm pretty sure.
+- **PORT=** The Port you want to open the server on (I had 5000, just pick something that isn't 3000, which is where the Client opens). This port needs to be reflected in the Client .env variables.
+- **GOOGLE_CLIENT_ID=** For OAuth2. Get from Google.
+- **GOOGLE_CLIENT_SECRET=** For OAuth2. Get from Google.
+- **GOOGLE_CALLBACK_URL=** OAuth Google Redirect for Server. **Deployment Only**
+- **GOOGLE_FRONT_END_REDIRECT_URL=** OAuth Google Redirect for Client. **Deployment Only**
+- **JWT_KEY=** Can be any random string. Used to verify JWT.
+- **STRIPE_KEY=** For Stripe card payments. Get from Stripe.
+- **CORS_ORIGIN=** The URL where you deployed your front-end. **Deployment Only**
+
+The following commands are meant to be typed into the terminal at the server's directory:
+
+##### 1. npm install
+
+This will install all modules and dependencies needed to run the app.
+
+##### 2. npm start
+
+This should set the app listening at [http://localhost:5000](http://localhost:5000). Or whatever you've set your PORT variable to.
+
+#### Client
+
+These instructions are meant to be done solely in the client diretory.
+
+Create an .env file with these environment variables (values can be with or without quotes):
+
+- **REACT_APP_SERVER_URL=** http://localhost:5000/api
+- **REACT_APP_DEV_URL=** http://localhost:5000
+- **REACT_APP_GOOGLE_URL=** http://locahost:5000/api/auth/google
+
+I have localhost:5000, but remember this should be whatever the PORT= env variable is in the server directory.
+
+The following commands are meant to be typed into the terminal at the server's directory:
+
+##### 1. npm install
+
+This will install all modules and dependencies needed to run the app.
+
+##### 2. npm start
+
+This should open your app at [http://localhost:3000](http://localhost:3000).
+
+
+#### My Links:
+[Personal Portfolio](https://kallenbach13.github.io/personal-portfolio-website/)
+<br>
+[Github](https://github.com/kallenbach13)# monster-hunters-guide
