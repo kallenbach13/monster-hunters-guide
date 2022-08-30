@@ -1,0 +1,12 @@
+In the /config/index.js file, inside the new Pool declaration, change the ssl code depending on your intention.
+
+For deployment:
+
+ssl: {
+    rejectUnauthorized: false
+    }
+
+
+For local use:
+
+ssl: false
