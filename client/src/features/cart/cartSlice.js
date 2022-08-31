@@ -7,43 +7,43 @@ export const fetchCurrentCart = createAsyncThunk('cart/fetchCurrentCart', async 
                             cart: loggedOutCart
                         })
         const cart = {}
-        response.data.forEach(cartProduct =>
-            cart[cartProduct.product.id] = {
-                quantity: cartProduct.quantity
+        response.data.forEach(cartMonster =>
+            cart[cartMonster.monster.id] = {
+                quantity: cartMonster.quantity
             })
         return cart
 })
 
-export const addProductToCart = createAsyncThunk(
-    'cart/addProductToCart',
-    async (cartProduct, {getState}) => {
+export const addMonsterToCart = createAsyncThunk(
+    'cart/addMonsterToCart',
+    async (cartMonster, {getState}) => {
         if (getState().users.isLoggedIn) {
-        await apiAxios.post('/carts/self/product',
-            cartProduct)
+        await apiAxios.post('/carts/self/monster',
+            cartMonster)
         }
-        return cartProduct
+        return cartMonster
     }
 )
 
-export const removeProductFromCart = createAsyncThunk(
-    'cart/removeProductFromCart',
-    async (product, {getState}) => {
+export const removeMonsterFromCart = createAsyncThunk(
+    'cart/removeMonsterFromCart',
+    async (monster, {getState}) => {
             if (getState().users.isLoggedIn) {
-                await apiAxios.delete('/carts/self/product',
-                    {data: product})
+                await apiAxios.delete('/carts/self/monster',
+                    {data: monster})
             }
-            return product
+            return monster
     }
 )
 
-export const changeProductQuantity = createAsyncThunk(
-    'cart/changeProductQuantity',
-    async (product, {getState}) => {
+export const changeMonsterQuantity = createAsyncThunk(
+    'cart/changeMonsterQuantity',
+    async (monster, {getState}) => {
         if (getState().users.isLoggedIn) {
-            await apiAxios.put('/carts/self/product',
-                product)
+            await apiAxios.put('/carts/self/monster',
+                monster)
         }
-        return product
+        return monster
     }
 )
 
@@ -57,32 +57,32 @@ export const checkoutCart = createAsyncThunk(
 export const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        cartProducts: {},
+        cartMonsters: {},
         fetchCurrentCartStatus: 'idle',
-        addProductToCartStatus: 'idle',
-        removeProductFromCartStatus: 'idle',
-        changeProductQuantityStatus: 'idle',
+        addMonsterToCartStatus: 'idle',
+        removeMonsterFromCartStatus: 'idle',
+        changeMonsterQuantityStatus: 'idle',
         checkoutCartStatus: 'idle',
         needsCheckoutRedirect: false,
-        productAddedMsg: 'Slice: Product Added',
-        showProductAddedMsg: false
+        monsterAddedMsg: 'Slice: Monster Added',
+        showMonsterAddedMsg: false
 
     },
     reducers: {
-        cartProductsUpdated(state, action) {
-            state.cartProducts = action.payload
+        cartMonstersUpdated(state, action) {
+            state.cartMonsters = action.payload
         },
         //Used to determine if a user is logging in as part of the checkout-flow
         needsCheckoutRedirectUpdated(state, action) {
             state.needsCheckoutRedirect = action.payload
         },
-        //Used for msg showed on alert banner for adding products 
-        productAddedMsgUpdated(state, action) {
-            state.productAddedMsg = action.payload
+        //Used for msg showed on alert banner for adding monsters 
+        monsterAddedMsgUpdated(state, action) {
+            state.monsterAddedMsg = action.payload
         },
-        //Used to show alert banner when adding product to cart
-        showProductAddedMsgUpdated(state, action) {
-            state.showProductAddedMsg = action.payload
+        //Used to show alert banner when adding monster to cart
+        showMonsterAddedMsgUpdated(state, action) {
+            state.showMonsterAddedMsg = action.payload
         },
     },    
     extraReducers: {
@@ -92,43 +92,43 @@ export const cartSlice = createSlice({
         },
         [fetchCurrentCart.fulfilled]: (state, action) => {
             state.fetchCurrentCartStatus = 'succeeded'
-            state.cartProducts = action.payload
+            state.cartMonsters = action.payload
         },
         [fetchCurrentCart.rejected]: (state, action) => {
             state.fetchCurrentCartStatus = 'failed'
         },
-        //Reducer for adding product to cart
-        [addProductToCart.pending]: (state, action) => {
-            state.addProductToCartStatus = 'loading'
+        //Reducer for adding monster to cart
+        [addMonsterToCart.pending]: (state, action) => {
+            state.addMonsterToCartStatus = 'loading'
         },
-        [addProductToCart.fulfilled]: (state, action) => {
-            state.addProductToCartStatus = 'succeeded'
-            state.cartProducts[action.payload.product_id] = action.payload
+        [addMonsterToCart.fulfilled]: (state, action) => {
+            state.addMonsterToCartStatus = 'succeeded'
+            state.cartMonsters[action.payload.monster_id] = action.payload
         },
-        [addProductToCart.rejected]: (state, action) => {
-            state.addProductToCartStatus = 'failed'
+        [addMonsterToCart.rejected]: (state, action) => {
+            state.addMonsterToCartStatus = 'failed'
         },
-        //Reducer for removing product from cart
-        [removeProductFromCart.pending]: (state, action) => {
-            state.removeProductFromCartStatus = 'loading'
+        //Reducer for removing monster from cart
+        [removeMonsterFromCart.pending]: (state, action) => {
+            state.removeMonsterFromCartStatus = 'loading'
         },
-        [removeProductFromCart.fulfilled]: (state, action) => {
-            state.removeProductFromCartStatus = 'succeeded'
-            delete state.cartProducts[action.payload.product_id]
+        [removeMonsterFromCart.fulfilled]: (state, action) => {
+            state.removeMonsterFromCartStatus = 'succeeded'
+            delete state.cartMonsters[action.payload.monster_id]
         },
-        [removeProductFromCart.rejected]: (state, action) => {
-            state.removeProductFromCartStatus = 'failed'
+        [removeMonsterFromCart.rejected]: (state, action) => {
+            state.removeMonsterFromCartStatus = 'failed'
         },
-        //Reducer for changing qty of a product in cart
-        [changeProductQuantity.pending]: (state, action) => {
-            state.changeProductQuantityStatus = 'loading'
+        //Reducer for changing qty of a monster in cart
+        [changeMonsterQuantity.pending]: (state, action) => {
+            state.changeMonsterQuantityStatus = 'loading'
         },        
-        [changeProductQuantity.fulfilled]: (state, action) => {
-            state.changeProductQuantityStatus = 'succeeded'
-            state.cartProducts[action.payload.product_id].quantity = action.payload.quantity
+        [changeMonsterQuantity.fulfilled]: (state, action) => {
+            state.changeMonsterQuantityStatus = 'succeeded'
+            state.cartMonsters[action.payload.monster_id].quantity = action.payload.quantity
         },
-        [changeProductQuantity.rejected]: (state, action) => {
-            state.changeProductQuantityStatus = 'failed'
+        [changeMonsterQuantity.rejected]: (state, action) => {
+            state.changeMonsterQuantityStatus = 'failed'
         },    
         //Reducers for tracking status of order placement
         [checkoutCart.pending]: (state, action) => {
@@ -143,10 +143,10 @@ export const cartSlice = createSlice({
     }
 })
 
-export const    { cartProductsUpdated, needsCheckoutRedirectUpdated, productAddedMsgUpdated, showProductAddedMsgUpdated } = cartSlice.actions
-export const selectCart = state => state.cart.cartProducts
+export const    { cartMonstersUpdated, needsCheckoutRedirectUpdated, monsterAddedMsgUpdated, showMonsterAddedMsgUpdated } = cartSlice.actions
+export const selectCart = state => state.cart.cartMonsters
 export const selectNeedsCheckoutRedirect = state => state.cart.needsCheckoutRedirect
 export const selectFetchCurrentCartStatus = state => state.cart.fetchCurrentCartStatus
-export const selectProductAddedMsg = state => state.cart.productAddedMsg
-export const selectShowProductAddedMsg = state => state.cart.showProductAddedMsg
+export const selectMonsterAddedMsg = state => state.cart.monsterAddedMsg
+export const selectShowMonsterAddedMsg = state => state.cart.showMonsterAddedMsg
 export default cartSlice.reducer

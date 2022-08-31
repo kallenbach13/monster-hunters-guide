@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { checkoutCart, cartProductsUpdated } from '../../features/cart/cartSlice'
+import { checkoutCart, cartMonstersUpdated } from '../../features/cart/cartSlice'
 import { fetchCustomerOrders } from '../../features/orders/ordersSlice'
 import { useHistory } from 'react-router-dom'
 import { CardElement, useElements, useStripe} from '@stripe/react-stripe-js'
-import CheckoutProductList from './CheckoutProductList'
+import CheckoutMonsterList from './CheckoutMonsterList'
 import apiAxios from '../../config/axiosConfig'
 
 const CheckOut = () => {
@@ -77,7 +77,7 @@ const CheckOut = () => {
       try {
         const orderResponse = await dispatch(checkoutCart())
         await dispatch(fetchCustomerOrders()) //Fetch order state after new order placed
-        await dispatch(cartProductsUpdated({})) //Clear cart
+        await dispatch(cartMonstersUpdated({})) //Clear cart
         const orderId = (orderResponse.payload.order_id)
         history.push(`/checkout-done/${orderId}`)
       } catch(error) {
@@ -93,7 +93,7 @@ const CheckOut = () => {
           </div>
 
           <div className="m-4">
-            <CheckoutProductList />
+            <CheckoutMonsterList />
           </div>
 
           <div className="m-4 max-w-2xl">

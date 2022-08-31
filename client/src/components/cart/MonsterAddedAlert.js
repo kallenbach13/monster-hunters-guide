@@ -2,27 +2,27 @@ import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { useSelector, useDispatch } from 'react-redux' 
-import { selectProductAddedMsg, selectShowProductAddedMsg, showProductAddedMsgUpdated } from '../../features/cart/cartSlice'
+import { selectMonsterAddedMsg, selectShowMonsterAddedMsg, showMonsterAddedMsgUpdated } from '../../features/cart/cartSlice'
 
-const ProductAddedAlert = alertMsg => {
+const MonsterAddedAlert = alertMsg => {
 
     const [showMsg, setShowMsg] = useState(false)
-    const productAddedMsg = useSelector(selectProductAddedMsg)
-    const showProductAddedMsg = useSelector(selectShowProductAddedMsg)
+    const monsterAddedMsg = useSelector(selectMonsterAddedMsg)
+    const showMonsterAddedMsg = useSelector(selectShowMonsterAddedMsg)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (showProductAddedMsg) {
+        if (showMonsterAddedMsg) {
             setShowMsg(true)
             const timeout = setTimeout(() => {
                 setShowMsg(false)
-                dispatch(showProductAddedMsgUpdated(false))
+                dispatch(showMonsterAddedMsgUpdated(false))
             }, 2000);
             return () => {
                 clearTimeout(timeout);
             };
         }
-    }, [productAddedMsg, showProductAddedMsg, dispatch]);
+    }, [monsterAddedMsg, showMonsterAddedMsg, dispatch]);
 
     return (
         <div>
@@ -31,7 +31,7 @@ const ProductAddedAlert = alertMsg => {
                     <div className="text-center px-4">
                         <div className="p-2 bg-pink-300 items-center text-white leading-none rounded-full flex inline-flex" role="alert">
                             <span className="mr-4"><FontAwesomeIcon className="ml-4" icon={faCartArrowDown} size="lg"/></span>
-                            <span className="font-semibold font-serif mr-2 text-left flex-auto">{productAddedMsg}</span>
+                            <span className="font-semibold font-serif mr-2 text-left flex-auto">{monsterAddedMsg}</span>
                         </div>
                     </div>
                 }
@@ -40,4 +40,4 @@ const ProductAddedAlert = alertMsg => {
     )
 }
 
-export default ProductAddedAlert
+export default MonsterAddedAlert

@@ -4,11 +4,11 @@ import apiAxios from '../../config/axiosConfig'
 export const fetchCustomerOrders = createAsyncThunk('orders/fetchCustomerOrders', async () => {
         const response = await apiAxios.get('/orders/self')
         const orders = {}
-        response.data.forEach(orderProduct => {
-            if (!orders[orderProduct.order_id]) {
-                orders[orderProduct.order_id] = {}
+        response.data.forEach(orderMonster => {
+            if (!orders[orderMonster.order_id]) {
+                orders[orderMonster.order_id] = {}
             }
-            orders[orderProduct.order_id][orderProduct.product_id] = orderProduct
+            orders[orderMonster.order_id][orderMonster.monster_id] = orderMonster
         })
         return orders
 })

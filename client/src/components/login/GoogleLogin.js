@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { fetchCustomerOrders } from "../../features/orders/ordersSlice"
 import { useEffect, useState } from 'react'
 import { selectCurrentUser, selectCurrentUserStatus } from '../../features/users/usersSlice'
-import { fetchAllProducts, selectFetchAllProductsStatus } from '../../features/products/productsSlice'
+import { fetchAllMonsters, selectFetchAllMonstersStatus } from '../../features/monsters/monstersSlice'
 import { selectFetchCustomerOrdersStatus } from '../../features/orders/ordersSlice'
 
 const GoogleLogin = () => {
@@ -17,7 +17,7 @@ const GoogleLogin = () => {
       const dispatch = useDispatch()
       const cartContents = useSelector(selectCart)
       const history = useHistory()
-      const fetchAllProductsStatus = useSelector(selectFetchAllProductsStatus)
+      const fetchAllMonstersStatus = useSelector(selectFetchAllMonstersStatus)
       const fetchCurrentCartStatus = useSelector(selectFetchCurrentCartStatus)
       const fetchCustomerOrdersStatus = useSelector(selectFetchCustomerOrdersStatus)
       const [loginMsg, setLoginMsg] = useState('')
@@ -28,7 +28,7 @@ const GoogleLogin = () => {
           dispatch(fetchCurrentUser())
           dispatch(fetchCurrentCart(cartContents))
           dispatch(fetchCustomerOrders())
-          dispatch(fetchAllProducts())    
+          dispatch(fetchAllMonsters())    
         }
       }, [userStatus, dispatch, history, cartContents])
       
@@ -41,7 +41,7 @@ const GoogleLogin = () => {
       //Ask for address if not in the database, otherwise redirect to main site
       useEffect(() => {
         if (  userStatus === 'succeeded' &&
-              fetchAllProductsStatus === 'succeeded' &&
+              fetchAllMonstersStatus === 'succeeded' &&
               fetchCurrentCartStatus === 'succeeded' &&
               fetchCustomerOrdersStatus === 'succeeded') {
             //Set log-in status
@@ -58,7 +58,7 @@ const GoogleLogin = () => {
                 history.push('/google-login/user-register')
               }
             }
-      }, [userStatus, user.address1, dispatch, history, needsCheckoutRedirect, fetchAllProductsStatus, fetchCurrentCartStatus, fetchCustomerOrdersStatus])
+      }, [userStatus, user.address1, dispatch, history, needsCheckoutRedirect, fetchAllMonstersStatus, fetchCurrentCartStatus, fetchCustomerOrdersStatus])
 
       return (
         <div>

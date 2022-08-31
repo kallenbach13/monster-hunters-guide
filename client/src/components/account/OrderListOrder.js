@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 
 const OrderListOrder = ({order, orderNr}) => {
 
-    const totalPrice = Object.keys(order).reduce((acc, keyName) => 
-      acc + parseFloat(order[keyName].price) * parseInt(order[keyName].quantity, 10), 0)
+    const totalDanger = Object.keys(order).reduce((acc, keyName) => 
+      acc + parseFloat(order[keyName].danger_level) * parseInt(order[keyName].quantity, 10), 0)
 
     //Get the time from the first item in the order
     const orderTime = order[Object.keys(order)[0]].created_at
@@ -18,7 +18,7 @@ const OrderListOrder = ({order, orderNr}) => {
             <div className="mx-auto m-2 max-w-md flex flex-col overflow-hidden border rounded shadow-lg">
               <div className="p-4">
                     <p className="text-gray-700 text-lg text-base text-center">
-                      Order Nr: {orderNr} Price: ${totalPrice} Date: {dateStr}
+                      Order Nr: {orderNr} Danger: ${totalDanger} Date: {dateStr}
                     </p>                
               </div>
             </div>

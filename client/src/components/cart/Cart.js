@@ -1,13 +1,13 @@
-import CartProduct from './CartProduct'
+import CartMonster from './CartMonster'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectCart,  needsCheckoutRedirectUpdated } from '../../features/cart/cartSlice'
-import { selectAllProducts } from '../../features/products/productsSlice'
+import { selectAllMonsters } from '../../features/monsters/monstersSlice'
 import { useHistory } from 'react-router-dom'
 
 const Cart = () => {
 
   const cartContents = useSelector(selectCart)
-  const products = useSelector(selectAllProducts)
+  const monsters = useSelector(selectAllMonsters)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -16,22 +16,22 @@ const Cart = () => {
     history.push('/checkout')
   }
 
-  const totalPrice = Object.keys(cartContents).reduce((acc, keyName) => 
-    acc + parseFloat(products[keyName].price) * parseInt(cartContents[keyName].quantity, 10), 0)
+  const totalDanger = Object.keys(cartContents).reduce((acc, keyName) => 
+    acc + parseFloat(monsters[keyName].danger_level) * parseInt(cartContents[keyName].quantity, 10), 0)
 
     return (
         <div className="mt-10">
           <div className="grid justify-center">
               {Object.keys(cartContents).map(keyName =>
-                  <CartProduct  key={keyName}
-                                cartItem={products[keyName]}
+                  <CartMonster  key={keyName}
+                                cartItem={monsters[keyName]}
                                 quantity={cartContents[keyName].quantity}/>
                                 )}
           <div>
-          { (totalPrice > 0) &&
+          { (totalDanger > 0) &&
           <div>
               <p className="font-bold text-center text-xl mb-2 text-gray-700 text-base">
-                Total price: ${totalPrice}
+                Total danger: ${totalDanger}
               </p>
           </div>
           }
