@@ -20,7 +20,6 @@ const MonsterDetail = () => {
                     {monster.description}
                 </p>
             </div>
-            <span className="flex flex-row justify-center px-3 py-1 text-sm font-serif font-semibold text-gray-700 mx-4 mb-2">Type: {monster.type}</span>
             <div className="px-6 pt-4 pb-2 text-center">
                 <p className="inline-block px-3 py-1 text-sm font-serif font-semibold text-black mx-4 mb-2">Weaknesses: {monster.weaknesses}</p>
             </div>

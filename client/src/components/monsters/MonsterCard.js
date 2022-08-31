@@ -14,11 +14,9 @@ const MonsterCard = ({monster}) => {
                         <Link to={`/monster/${monster.id}`}>  
                             <div className="p-2">
                                 <div className="font-bold font-serif text-lg text-gray-500 text-center mb-2">{monster.name}</div>
-                                <p className="text-gray-700 text-base text-center font-serif">
-                                {monster.description}
-                                </p>
                             </div>
                         </Link>
+                        <div className="flex flex-row justify-center px-3 py-1 text-sm font-semibold font-serif text-gray-700 mr-2 mb-2">Type: {monster.type}</div> 
                         <div className="flex flex-row justify-center px-3 py-1 text-sm font-semibold font-serif text-gray-700 mr-2 mb-2">Danger Level: {monster.danger_level}</div>                        
                         <div className="p-2 text-center">
                             <p  className="inline-block px-3 py-1 text-sm font-semibold font-serif text-black mr-2 mb-2" >Powers: {monster.powers}</p>
