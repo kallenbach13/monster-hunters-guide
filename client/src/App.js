@@ -1,5 +1,16 @@
 import { useEffect } from 'react'
 import Nav from './components/Nav'
+import ProductAddedAlert from './components/cart/ProductAddedAlert'
+import Register from './components/login/Register'
+import Account from './components/account/Account'
+import OrderDetail from './components/account/OrderDetail'
+import Cart from './components/cart/Cart'
+import CheckOut from './components/checkout/CheckOut'
+import CheckOutDone from './components/checkout/CheckOutDone'
+import Login from './components/login/Login'
+import GoogleLogin from './components/login/GoogleLogin'
+import GoogleUserRegister from './components/login/GoogleUserRegister'
+import ProtectedRoute from './components/ProtectedRoute'
 import { BrowserRouter as Router,
   Switch,
   Route,
@@ -7,9 +18,9 @@ import { BrowserRouter as Router,
 } from 'react-router-dom'
 import { selectIsLoggedIn } from './features/users/usersSlice'
 import { useSelector, useDispatch } from 'react-redux'
-import MonsterDetail from './components/monsters/MonsterDetail'
-import MonsterList from './components/monsters/MonsterList'
-import { fetchAllMonsters } from './features/monsters/monstersSlice'
+import ProductDetail from './components/products/ProductDetail'
+import ProductList from './components/products/ProductList'
+import { fetchAllProducts } from './features/products/productsSlice'
 import {Elements} from '@stripe/react-stripe-js'
 import {loadStripe} from '@stripe/stripe-js'
 
@@ -20,7 +31,7 @@ const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn)
 
   useEffect(() => {
-    dispatch(fetchAllMonsters())
+    dispatch(fetchAllProducts())
   }, [dispatch])
 
   return (
@@ -29,9 +40,21 @@ const App = () => {
         <div className="flex bg-grey-300 flex-col min-h-screen">
           <Nav />
           <div className="mt-24 flex flex-col flex-grow">
+            <ProductAddedAlert />
             <Switch>
-              <Route path="/monster/:id" component={MonsterDetail} />
-              <Route exact path="/:monsterOffset?" component={MonsterList} />
+              <Route path="/login" component={Login} />
+              <Route exact path="/google-login" component={GoogleLogin} />
+              <Route exact path="/google-login/user-register" component={GoogleUserRegister} />
+              <Route path="/register" component={Register} />
+              <Route path="/account/orders/:id" component={OrderDetail} />
+              <ProtectedRoute path="/account" isLoggedIn={isLoggedIn} component={Account} />
+              <Route path="/product/:id" component={ProductDetail} />
+              <Route path="/cart" component={Cart} />
+              <Route exact path="/checkout">
+                {isLoggedIn ? <CheckOut /> : <Redirect to="/login" />}
+              </Route>
+              <ProtectedRoute path="/checkout-done/:id" isLoggedIn={isLoggedIn} component={CheckOutDone} />
+              <Route exact path="/:productOffset?" component={ProductList} />
             </Switch>
           </div>
           

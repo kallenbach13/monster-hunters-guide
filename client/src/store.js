@@ -1,6 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import usersReducer from './features/users/usersSlice'
-import monstersReducer from './features/monsters/monstersSlice'
+import productsReducer from './features/products/productsSlice'
 import ordersReducer from './features/orders/ordersSlice'
 import cartReducer from './features/cart/cartSlice'
 import {
@@ -27,7 +27,7 @@ export default configureStore({
     cart: persistedCartReducer,
     users: usersReducer,
     orders: ordersReducer,
-    monsters: monstersReducer
+    products: productsReducer
   },
   middleware: getDefaultMiddleware({
     serializableCheck: {

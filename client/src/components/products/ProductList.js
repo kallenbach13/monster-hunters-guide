@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react'
-import MonsterCard from './MonsterCard'
+import ProductCard from './ProductCard'
 import { useDispatch, useSelector } from 'react-redux'
-import {  selectAllMonsters, selectFetchAllMonstersStatus } from '../../features/monsters/monstersSlice'
+import {  selectAllProducts, selectFetchAllProductsStatus } from '../../features/products/productsSlice'
+import { needsCheckoutRedirectUpdated } from '../../features/cart/cartSlice'
 import ReactPaginate from 'react-paginate'
 import './Pagination.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useHistory, useParams } from 'react-router-dom'
 
-const MonsterList = () => {
+const ProductList = () => {
   
-  const monsters = useSelector(selectAllMonsters)
-  const monstersStatus = useSelector(selectFetchAllMonstersStatus)
+  const products = useSelector(selectAllProducts)
+  const productsStatus = useSelector(selectFetchAllProductsStatus)
 
   const [data, setData] = useState([])
   const [perPage] = useState(8)
   const [pageCount, setPageCount] = useState(0)
-  const { monsterOffset = 0 }= useParams()
+  const { productOffset = 0 }= useParams()
   let history = useHistory()
   const dispatch = useDispatch()
 
@@ -24,14 +25,14 @@ const MonsterList = () => {
   }, [dispatch])
 
   useEffect(() => {
-    const slice = Object.keys(monsters).slice(monsterOffset, monsterOffset + perPage)
+    const slice = Object.keys(products).slice(productOffset, productOffset + perPage)
     const postData = slice.map(keyName =>
-            <MonsterCard
-              key={monsters[keyName].id}
-              monster={monsters[keyName]} />)
+            <ProductCard
+              key={products[keyName].id}
+              product={products[keyName]} />)
     setData(postData)
-    setPageCount(Math.ceil(Object.keys(monsters).length / perPage))
-  }, [monsters, monsterOffset, perPage])
+    setPageCount(Math.ceil(Object.keys(products).length / perPage))
+  }, [products, productOffset, perPage])
 
   const handlePageClick = (e) => {
     const selectedPage = e.selected
@@ -42,14 +43,14 @@ const MonsterList = () => {
   return (
             <div className="flex flex-col flex-grow">
    
-            { monstersStatus === 'loading' && <FontAwesomeIcon  className="mt-20 mx-auto" icon="fas fa-spinner" size="4x" spin/>}
+            { productsStatus === 'loading' && <FontAwesomeIcon  className="mt-20 mx-auto" icon="fas fa-spinner" size="4x" spin/>}
 
-              { monstersStatus === 'failed' &&
+              { productsStatus === 'failed' &&
                 <div className="p-4 mt-20 mx-auto max-w-screen-2xl">
                   <h2 className="text-lg text-center">Problem connecting with the server.</h2>
                 </div>}
 
-              { monstersStatus === 'succeeded' &&
+              { productsStatus === 'succeeded' &&
               <div className="flex flex-grow flex-col">
                 <div className="flex-grow">
                   <div className="p-4 flex flex-wrap justify-center max-w-screen-2xl mx-auto">
@@ -76,4 +77,4 @@ const MonsterList = () => {
     )
   }
   
-  export default MonsterList
+  export default ProductList
