@@ -1,6 +1,6 @@
 # Monster Hunter's Guide
 
-Deployed At: [URL](URL)
+Deployed At: [https://monster-hunters-guide.netlify.app/](https://monster-hunters-guide.netlify.app/)
 
 ### Created By Isak Kallenbach
 
