@@ -9,10 +9,10 @@ const MonsterDetail = () => {
   const monstersStatus = useSelector(selectFetchAllMonstersStatus)
 
   return (
-      <div className="flex-grow p-5">
+      <div className="flex-grow bg-black p-5">
         { monstersStatus === 'succeeded' &&
         <div className="p-10">  
-            <div className="max-w-md mx-auto rounded overflow-hidden shadow-lg">
+            <div className="max-w-md mx-auto rounded overflow-hidden shadow-lg bg-gray-300">
             <img className="w-full" src={monster.image_url_two} alt={monster.name} />
             <div className="px-6 py-4">
                 <div className="font-bold font-serif text-gray-500 text-xl text-center mb-2">{monster.name}</div>

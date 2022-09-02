@@ -4,7 +4,7 @@ const MonsterCard = ({monster}) => {
 
     return (
 
-            <div className="m-4 max-w-sm flex flex-col overflow-hidden border rounded shadow-lg">
+            <div className="m-4 max-w-sm flex bg-gray-300 flex-col overflow-hidden rounded shadow-lg">
                 <div className="flex flex-col flex-grow justify-center">
                     <Link to={`/monster/${monster.id}`}>  
                         <img className="h-80 w-full mb-2" src={monster.image_url_one} alt={monster.name} />
