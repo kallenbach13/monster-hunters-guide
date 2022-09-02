@@ -1,14 +1,14 @@
-# streetweary
+# Monster Hunter's Guide
 
-Deployed At: [https://streetweary.netlify.app/](https://streetweary.netlify.app/)
+Deployed At: [URL](URL)
 
 ### Created By Isak Kallenbach
 
 #### Technologies Used: Javascript, PostgreSQL, Express, React, Node.js, HTML5, CSS3 
 
-This is a mock clothing store app focused specifically around streetwear fashion. The site allows you to browse, add items to a cart, create an account, login, checkout, etc.
+This is an online guide to various dangerous supernatural creatures and tips on how to defeat them if you ever encounter them.
 
-I wanted to make an online shopping site, because online shopping is such a massive part of our lives and I wanted to try my hand at it. So when the question for what the site would "sell" popped into my head, the first answer was clothing, as I'm into fashion and most of the online shopping I do is on clothing websites (though most of it is the online equivalent of window shopping).
+Whenever I'm in the mood to create a new project, I always try to focus it around something I'm interested in; art, fashion, movies, etc. In this case I decided to focus my project around horror, which I'm a big fan of. With that in mind, I created a fun "guide" that pretends that these supernatural creatures are real and what to do when you come across them.
 
 
 ## Instructions
@@ -19,9 +19,9 @@ The following instructions are for local use only. Instructions that are necessa
 
 Create and connect to a database. I use Postbird for local databases, but anything, including the CLI, work perfectly fine. 
 
-Copy and paste the contents of the **clothing-store.sql** file in the server/db directory to create all the necessary tables.
+Copy and paste the contents of the **monster-hunters-db.sql** file in the server/db directory to create all the necessary tables.
 
-Use the **products.sql** file in the same directory to insert some items into the tables.
+Use the **monsters.sql** file in the same directory to insert some items into the tables.
 
 #### Server
 
@@ -35,12 +35,6 @@ Create an .env file with these environment variables (values can be with or with
 - **DB_DATABASE=** Your database's name.
 - **DB_HOST=** The host address. **Deployment Only** - I'm pretty sure.
 - **PORT=** The Port you want to open the server on (I had 5000, just pick something that isn't 3000, which is where the Client opens). This port needs to be reflected in the Client .env variables.
-- **GOOGLE_CLIENT_ID=** For OAuth2. Get from Google.
-- **GOOGLE_CLIENT_SECRET=** For OAuth2. Get from Google.
-- **GOOGLE_CALLBACK_URL=** OAuth Google Redirect for Server. **Deployment Only**
-- **GOOGLE_FRONT_END_REDIRECT_URL=** OAuth Google Redirect for Client. **Deployment Only**
-- **JWT_KEY=** Can be any random string. Used to verify JWT.
-- **STRIPE_KEY=** For Stripe card payments. Get from Stripe.
 - **CORS_ORIGIN=** The URL where you deployed your front-end. **Deployment Only**
 
 The following commands are meant to be typed into the terminal at the server's directory:

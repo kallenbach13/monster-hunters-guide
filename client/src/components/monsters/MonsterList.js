@@ -14,7 +14,7 @@ const MonsterList = () => {
   const monstersStatus = useSelector(selectFetchAllMonstersStatus)
 
   const [data, setData] = useState([])
-  const [perPage] = useState(8)
+  const [perPage] = useState(6)
   const [pageCount, setPageCount] = useState(0)
   const { monsterOffset = 0 }= useParams()
   let history = useHistory()
