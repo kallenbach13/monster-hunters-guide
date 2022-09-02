@@ -1,14 +1,14 @@
-# The Monster Hunter's Guide
+# streetweary
 
-Deployed At:
+Deployed At: [https://streetweary.netlify.app/](https://streetweary.netlify.app/)
 
 ### Created By Isak Kallenbach
 
 #### Technologies Used: Javascript, PostgreSQL, Express, React, Node.js, HTML5, CSS3 
 
-This is a database that collects information on various supernatural creatures with the intention of arming would-be monster hunters with valuable knowledge to defeat them.
+This is a mock clothing store app focused specifically around streetwear fashion. The site allows you to browse, add items to a cart, create an account, login, checkout, etc.
 
-I wanted to create a fun app that touched on something that interests me. In this case I went with my love of horror movies and so designed a sort of database with monsters and information on how to defeat them as if they were real things.
+I wanted to make an online shopping site, because online shopping is such a massive part of our lives and I wanted to try my hand at it. So when the question for what the site would "sell" popped into my head, the first answer was clothing, as I'm into fashion and most of the online shopping I do is on clothing websites (though most of it is the online equivalent of window shopping).
 
 
 ## Instructions
@@ -19,9 +19,9 @@ The following instructions are for local use only. Instructions that are necessa
 
 Create and connect to a database. I use Postbird for local databases, but anything, including the CLI, work perfectly fine. 
 
-Copy and paste the contents of the **monster-hunters-db.sql** file in the server/db directory to create all the necessary tables.
+Copy and paste the contents of the **clothing-store.sql** file in the server/db directory to create all the necessary tables.
 
-Use the **monsters.sql** file in the same directory to insert some items into the tables.
+Use the **products.sql** file in the same directory to insert some items into the tables.
 
 #### Server
 
@@ -79,4 +79,4 @@ This should open your app at [http://localhost:3000](http://localhost:3000).
 #### My Links:
 [Personal Portfolio](https://kallenbach13.github.io/personal-portfolio-website/)
 <br>
-[Github](https://github.com/kallenbach13)# monster-hunters-guide
+[Github](https://github.com/kallenbach13)
