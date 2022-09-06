@@ -44,7 +44,7 @@ const MonsterList = () => {
   return (
             <div className="flex flex-col flex-grow">
    
-   { monstersStatus === 'loading' && <FontAwesomeIcon  className="mt-20 mx-auto" icon={faCircleNotch} size="4x" style="color:white" spin/>}
+   { monstersStatus === 'loading' && <FontAwesomeIcon  className="mt-20 mx-auto" icon={faCircleNotch} size="4x" spin/>}
 
               { monstersStatus === 'failed' &&
                 <div className="p-4 mt-20 mx-auto max-w-screen-2xl">
